@@ -85,46 +85,8 @@ function copyValue() {
   document.getElementById("datum_vracanja").value = date;
 }
 
-function testFun() {
-  document.getElementById("vozilo").value = document.getElementById(
-    "polo"
-  ).textContent;
-  document.getElementById("vozilo").value = document.getElementById(
-    "upp"
-  ).textContent;
-  document.getElementById("vozilo").value = document.getElementById(
-    "208"
-  ).textContent;
-  document.getElementById("vozilo").value = document.getElementById(
-    "panda"
-  ).textContent;
-  document.getElementById("vozilo").value = document.getElementById(
-    "corsa"
-  ).textContent;
-  document.getElementById("vozilo").value = document.getElementById(
-    "punto"
-  ).textContent;
-  document.getElementById("vozilo").value = document.getElementById(
-    "golf"
-  ).textContent;
-  document.getElementById("vozilo").value = document.getElementById(
-    "astra"
-  ).textContent;
-  document.getElementById("vozilo").value = document.getElementById(
-    "308"
-  ).textContent;
-  document.getElementById("vozilo").value = document.getElementById(
-    "passat"
-  ).textContent;
-  document.getElementById("vozilo").value = document.getElementById(
-    "opel"
-  ).textContent;
-  document.getElementById("vozilo").value = document.getElementById(
-    "master"
-  ).textContent;
-  document.getElementById("vozilo").value = document.getElementById(
-    "polo"
-  ).textContent;
+function testFun(name) {
+  document.getElementById("vozilo").value = name;
 }
 
 // $(".test").on("click", (evt) => {
