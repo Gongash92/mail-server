@@ -1,0 +1,19 @@
+{
+  "name": "mail-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "test.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/babarogic/zarko-zadatak.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/babarogic/zarko-zadatak/issues"
+  },
+  "homepage": "https://github.com/babarogic/zarko-zadatak#readme"
+}
