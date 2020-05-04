@@ -3,12 +3,6 @@ const path = require("path");
 const bodyParser = require("body-parser");
 const nodemailer = require("nodemailer");
 const mailGun = require("nodemailer-mailgun-transport");
-const auth = {
-  auth: {
-    api_key: "b16a5862d5e5a1354645573219d3dbd9-65b08458-2051c5bf",
-    domain: "sandbox2acb4a89bc5f4063a2cb91c6b7732fd2.mailgun.org",
-  },
-};
 
 const app = express();
 
@@ -26,7 +20,6 @@ app.get("/rezervacija", function (request, response) {
 app.use(express.static("public"));
 
 app.post("/send", (req, res) => {
-  const email = `${req.body.email}`;
   const output = `
   <p> Imate novu rezervaciju </p>
   <h3> Detalji rezervacije</h3>
