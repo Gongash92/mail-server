@@ -1,3 +1,5 @@
+// GET Value
+
 function subForm() {
   if (typeof localStorage != "undefined") {
     var e = document.getElementById("lokacija");
@@ -8,6 +10,8 @@ function subForm() {
   document.getElementById("form").submit();
 }
 
+// INPUT Value
+
 function setForm() {
   var a = document.getElementById("lokacija");
   $(a).val(localStorage.lokacija);
@@ -17,14 +21,17 @@ function setForm() {
   $(b).val(localStorage.checkOutDate);
 }
 
+// Validation return location
+
 $(function () {
   $(".btn").click(function () {
     var location = $("#returnLocation");
 
-    if (location.val() == "0") {
-      $("#myAlert").show("fade");
+    if (location.val() == "") {
+      $("#myAlert").show();
+      $(window).scrollTop(0);
       return false;
-    } else if (location.val() > "0") {
+    } else if (location.val() > "") {
       $("#myAlert").hide();
       return true;
     }
@@ -33,17 +40,19 @@ $(function () {
 
 $("#returnLocation").on("change", function () {
   var value = $(this).val();
-  if (value > "0") {
+  if (value > "") {
     $("#myAlert").hide("fade");
     return true;
   }
 });
 
+// Filing out LIST
+
 $(function () {
   var $src = $("#one"),
     $dst = $("#two");
   $src.on("input", function () {
-    $dst.val($src.val());
+    $dst.text($src.val());
   });
 });
 
@@ -51,7 +60,7 @@ $(function () {
   var $src = $("#three"),
     $dst = $("#four");
   $src.on("input", function () {
-    $dst.val($src.val());
+    $dst.text($src.val());
   });
 });
 
@@ -59,34 +68,34 @@ $(function () {
   var $src = $("#five"),
     $dst = $("#six");
   $src.on("input", function () {
+    $dst.text($src.val());
+  });
+});
+
+$(function () {
+  var $src = $("#checkIn2"),
+    $dst = $("#datum_preuzimanja");
+  $src.on("input", function () {
     $dst.val($src.val());
   });
 });
 
-// $(function () {
-//   var $src = $("#checkIn2"),
-//     $dst = $("#datum_preuzimanja");
-//   $src.on("input", function () {
-//     $dst.val($src.val());
-//   });
-// });
-
 function copyValue() {
   var dropboxvalue = document.getElementById("lokacija").value;
-  document.getElementById("check").value = dropboxvalue;
+  document.getElementById("check").innerHTML = dropboxvalue;
 
   var out = document.getElementById("returnLocation").value;
-  document.getElementById("out").value = out;
+  document.getElementById("out").innerHTML = out;
 
   var date = document.getElementById("checkIn2").value;
-  document.getElementById("datum_preuzimanja").value = date;
+  document.getElementById("datum_preuzimanja").innerHTML = date;
 
   var date = document.getElementById("checkOutDate").value;
-  document.getElementById("datum_vracanja").value = date;
+  document.getElementById("datum_vracanja").innerHTML = date;
 }
 
 function testFun(name) {
-  document.getElementById("vozilo").value = name;
+  document.getElementById("vozilo").innerHTML = name;
 }
 
 // $(".test").on("click", (evt) => {
@@ -100,29 +109,29 @@ function testFun(name) {
 //   });
 // });
 
-$("#formSub2").on("submit", function (e) {
-  e.preventDefault();
+// $("#formSub2").on("submit", function (e) {
+//   e.preventDefault();
 
-  if ($("#formSub2").valid()) {
-    $.ajax({
-      url: "/send",
-      method: "post",
-      data: $("#formSub2").serialize(),
-    }).done((d) => {
-      swal({
-        title: "Uspesna Rezervacija!",
-        icon: "success",
-        buttons: false,
-        timer: 3000,
-      }).then(function () {
-        window.location.href = "index.html";
-      });
-    });
-    return false;
-  } else {
-    return false;
-  }
-});
+//   if ($("#formSub2").valid()) {
+//     $.ajax({
+//       url: "/send",
+//       method: "post",
+//       data: $("#formSub2").serialize(),
+//     }).done((d) => {
+//       swal({
+//         title: "Uspesna Rezervacija!",
+//         icon: "success",
+//         buttons: false,
+//         timer: 3000,
+//       }).then(function () {
+//         window.location.href = "index.html";
+//       });
+//     });
+//     return false;
+//   } else {
+//     return false;
+//   }
+// });
 
 // (function () {
 //   $("#sendMailll").click(function () {
@@ -131,9 +140,37 @@ $("#formSub2").on("submit", function (e) {
 //   });
 // });
 
+// ROUT to WIZARD Step Three
+
 $("#formSub").on("submit", function (e) {
   e.preventDefault();
   if ($("#formSub").valid()) {
     $("#sada").click();
   }
+});
+
+// POST on Server
+$("#rtr").on("click", function (e) {
+  e.preventDefault();
+
+  var result = {};
+  $("span").each(function (k, v) {
+    result[v.id] = v.innerHTML;
+  });
+
+  $.ajax({
+    url: "/send",
+    method: "post",
+    data: result,
+  }).done((d) => {
+    swal({
+      title: "Uspesna Rezervacija!",
+      icon: "success",
+      buttons: false,
+      timer: 3000,
+    }).then(function () {
+      window.location.href = "index.html";
+    });
+  });
+  return false;
 });
